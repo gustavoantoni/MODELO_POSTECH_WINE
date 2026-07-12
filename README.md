@@ -1,7 +1,7 @@
 # 🍷 Classificação da Qualidade de Vinhos com Machine Learning
 
 > **Tech Challenge — Fase 2 | POSTECH DTAT**  
-> Projeto de pós-graduação em Data Analytics 
+> Projeto de pós-graduação em Data Analytics
 
 ---
 
@@ -18,19 +18,41 @@ O problema foi formulado como uma **classificação binária**:
 
 ---
 
+## Como Executar
+
+### Pré-requisitos
+Python 3.8+ e as bibliotecas listadas em `requirements.txt`.
+
+```bash
+# Instalar dependências
+pip install -r requirements.txt
+
+# Abrir o notebook principal
+jupyter notebook notebook/Versao_completa.ipynb
+```
+
+### Dados
+Faça o download do dataset [Wine Quality Dataset](https://www.kaggle.com/datasets/yasserh/wine-quality-dataset) e salve o arquivo `WineQT.csv` na pasta `data/`.
+
+---
+
 ## Estrutura do Repositório
 
 ```
 wine-quality-classification/
 │
-│
 ├── data/
 │   └── WineQT.csv                  # Base de dados utilizada
 │
-├── notebooks/
+├── notebook/
 │   └── Versao_completa.ipynb       # Notebook principal — contém toda a análise,
 │                                   # visualizações, modelagem e resultados
 │
+├── result/                         # Gráficos e métricas gerados pelo notebook
+│
+├── scr/                            # Scripts auxiliares de pré-processamento
+│
+├── .gitignore
 ├── requirements.txt                # Bibliotecas utilizadas
 └── README.md                       # Descrição do projeto
 ```
@@ -92,30 +114,12 @@ As variáveis de maior influência identificadas pelos modelos foram:
 
 | Variável | Direção | Interpretação |
 |----------|---------|---------------|
-| `alcohol` | ✅ Positiva | Principal preditor de alta qualidade |
-| `alcohol_acid_ratio` | ✅ Positiva | Combinação favorável álcool/acidez |
-| `sulphates` | ✅ Positiva | Agente conservante e antimicrobiano |
-| `volatile acidity` | ❌ Negativa | Indica deterioração microbiológica |
+| `alcohol` | ✅ Positiva | Principal preditor de alta qualidade (18,3%) |
+| `sulphates` | ✅ Positiva | Agente conservante e antimicrobiano (13,5%) |
+| `alcohol_acid_ratio` | ✅ Positiva | Combinação favorável álcool/acidez (13,4%) |
+| `volatile acidity` | ❌ Negativa | Indica deterioração microbiológica (6,4%) |
 
 > ⚠️ **Nota sobre métricas**: a acurácia global não é o indicador mais adequado para este problema dado o desbalanceamento das classes. Um modelo que classifique tudo como "baixa/média" já atingiria ~86% de acurácia sem nenhum poder preditivo real. **Recall e AUC-ROC** são as métricas prioritárias.
-
----
-
-## Como Executar
-
-### Pré-requisitos
-Python 3.8+ e as bibliotecas listadas em `requirements.txt`.
-
-```bash
-# Instalar dependências
-pip install -r requirements.txt
-
-# Abrir o notebook
-jupyter notebook notebooks/Versao_completa.ipynb
-```
-
-### Dados
-Faça o download do dataset [Wine Quality Dataset](https://www.kaggle.com/datasets/yasserh/wine-quality-dataset) e salve o arquivo `WineQT.csv` na pasta `data/`.
 
 ---
 
@@ -130,7 +134,6 @@ Faça o download do dataset [Wine Quality Dataset](https://www.kaggle.com/datase
 | `imbalanced-learn` | SMOTE para balanceamento de classes |
 
 ---
-
 
 ## Referências
 
